@@ -73,12 +73,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+$vcap_services = getenv("VCAP_SERVICES");
+$vcap_services_json = json_decode($vcap_services,true);
+$vcap_mysql_config = $vcap_services_json["cleardb"][0]["credentials"];
+$vcap_db = $vcap_mysql_config["name"];
+$vcap_host = $vcap_mysql_config["hostname"];
+$vcap_port = $vcap_mysql_config["port"];
+$vcap_username = $vcap_mysql_config["username"];
+$vcap_password = $vcap_mysql_config["password"];
+
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'hostname' => $vcap_host,
+	'username' => $vcap_username,
+	'password' => $vcap_password,
+	'database' => $vcap_db,
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
