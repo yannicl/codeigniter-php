@@ -47,7 +47,7 @@
 	<div class="jumbotron itini-description">
 		<div class="container">
 			<h1>The best idea</h1>
-			<p>A short description of the idea</p>
+			<p>A short description of the idea - <?php echo $message['message']?></p>
 		</div>
 	</div>
 		
